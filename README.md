@@ -1,0 +1,1 @@
+# pashto_pos_app_deploy

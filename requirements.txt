@@ -5,5 +5,5 @@ tensorflow==2.8.0
 gunicorn==20.0.4
 Werkzeug==2.0
 Jinja2==2.10.3
-itsdangerous==1.1.0
+itsdangerous==2.0
 MarkupSafe==1.1.1

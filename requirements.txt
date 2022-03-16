@@ -58,3 +58,4 @@ urllib3==1.26.8
 Werkzeug==2.0.3
 wrapt==1.13.3
 yarg==0.1.9
+gunicorn==19.9.0

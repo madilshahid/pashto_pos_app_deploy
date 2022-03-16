@@ -6,4 +6,4 @@ gunicorn==20.0.4
 Werkzeug==2.0
 Jinja2==3.0
 itsdangerous==2.0
-MarkupSafe==1.1.1
+MarkupSafe==2.0.0

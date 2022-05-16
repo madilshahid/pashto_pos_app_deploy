@@ -130,9 +130,10 @@ def predict():
 
 @app.route("/prediction", methods=["POST"])
 def prediction():
-    test_sentence = request.form['Pashto']
+
+    sentence = request.form['Pashto']
     abc = request.form['Pashto']
-    test_sentence = test_sentence.split(' ')
+    sentence = sentence.split(' ')
 
     def not_from_corpus(sentence, unique_words):
         for i in range(len(sentence) - 1):
@@ -145,19 +146,21 @@ def prediction():
     test_tagged_words = [pair[0] for pair in test_set]
 
     start = time.time()
-    tagged_seq = Viterbi(test_sentence)
+    tagged_seq = Viterbi(sentence)
     end = time.time()
     difference = end - start
-    if not_from_corpus:
+    if not_from_corpus(sentence, V):
         repeated_tags = ['Noun', 'proNoun', 'Verb', 'NULL', 'Adverb', 'Adjective']
-        for i in range(len(tagged_seq)):
-            if tagged_seq[i][1] == 'Punctuation':
+        for i in range(len(sentence)):
+            not_in_corpus = False
+            if sentence[i] not in V:
+                not_in_corpus = True
+            if not_in_corpus:
                 tagged_seq[i] = (tagged_seq[i][0], random.choice(repeated_tags))
-    print(tagged_seq)
     dates = {}
     i = 0
     for token in enumerate(tagged_seq):
-        dates[test_sentence[i]]  = token[1][1]
+        dates[sentence[i]]  = token[1][1]
         i = i + 1
 
     return render_template('prediction.html', dates=dates, prediction_text=abc)
